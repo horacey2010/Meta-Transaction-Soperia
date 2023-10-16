@@ -36,25 +36,25 @@ module.exports = async function(callback) {
         // Increment of nonce to generate new signature with the same transaction
         let nonce = 1;
 
-        // const messageHash = await tokenSender.getHash(
-        //     accounts[1],
-        //     transferAmount.toString(),
-        //     accounts[2],
-        //     horaceToken.address,
-        //     nonce
-        // );
+        const messageHash = await tokenSender.getHash(
+            accounts[1],
+            transferAmount.toString(),
+            accounts[2],
+            horaceToken.address,
+            nonce
+        );
 
-        // const signature = await web3.eth.personal.sign(messageHash, accounts[1]);
+        const signature = await web3.eth.personal.sign(messageHash, accounts[1]);
 
         // relayer call this function and pay gas fee
-        // await tokenSender.transfer(
-        //     accounts[1],
-        //     transferAmount.toString(),
-        //     accounts[2],
-        //     horaceToken.address,
-        //     nonce,
-        //     signature
-        // )
+        await tokenSender.transfer(
+            accounts[1],
+            transferAmount.toString(),
+            accounts[2],
+            horaceToken.address,
+            nonce,
+            signature
+        )
 
     }   catch(error)    {
         console.log(error)
